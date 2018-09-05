@@ -1,0 +1,29 @@
+---
+server:
+  connection-timeout: 5000
+  port: 8080
+  compression:
+    enabled: true
+    min-response-size: 1
+
+keycloak:
+  realm: NowCP
+  auth-server-url: http://localhost:8180/auth
+  ssl-required: external
+  public-client: true
+  resource: app-springboot
+  principal-attribute: preferred_username
+
+spring:
+  freemarker:
+    cache: false
+  application:
+    name: ${keycloak.resource}
+  profiles: ${keycloak.resource}
+
+products:
+  service:
+    url: http://localhost:8081/
+
+
+
