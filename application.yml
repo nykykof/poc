@@ -1,4 +1,11 @@
 ---
+spring:
+  application:
+    name: app-springboot
+  profiles: ${spring.application.name}
+  freemarker:
+    cache: false
+
 server:
   connection-timeout: 5000
   port: 8080
@@ -11,15 +18,8 @@ keycloak:
   auth-server-url: http://localhost:8180/auth
   ssl-required: external
   public-client: true
-  resource: app-springboot
+  resource: ${spring.application.name}
   principal-attribute: preferred_username
-
-spring:
-  freemarker:
-    cache: false
-  application:
-    name: ${keycloak.resource}
-  profiles: ${keycloak.resource}
 
 products:
   service:
